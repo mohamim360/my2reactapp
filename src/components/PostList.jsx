@@ -6,44 +6,25 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 function PostList({ isVisible, onStopPosting }) {
-  const [changeText, setChangeText] = useState("");
-  const [changeAuthor, setChangeAuthor] = useState("");
-
   
-
-  const [cnts, setCnts] = useState([]);
-
-  function onTextHandler(event) {
-    setChangeText(event.target.value);
-  }
-  function onAuthorHandler(event) {
-    setChangeAuthor(event.target.value);
-  }
-  function onSetPostHandler(event) {
-    event.preventDefault();
-   
-    setCnts((prev) => [[changeAuthor,changeText], ...prev]);
-    onStopPosting();
+  const [posts, setPosts] = useState([]);
+  function onPostHandler(posts) {
+    setPosts((prev) => [posts, ...prev]);
   }
 
   return (
     <>
       {isVisible ? (
         <Modal onClose={onStopPosting}>
-          <NewPost
-            onInputText={onTextHandler}
-            onInputAuthor={onAuthorHandler}
-            onInputCancel={onStopPosting}
-            onInputSumit={onSetPostHandler}
-          />
+          <NewPost onInputCancel={onStopPosting} 
+          onInputSubmit={onPostHandler}/>
         </Modal>
       ) : null}
 
       <ul className={classes.posts}>
-        {
-          cnts.map( cnt => 
-           ( <Post author={cnt[0]} text={cnt[1]} />)
-          )}
+        {posts.map((cnt) => (
+          <Post author={cnt[0]} text={cnt[1]} />
+        ))}
       </ul>
     </>
   );
