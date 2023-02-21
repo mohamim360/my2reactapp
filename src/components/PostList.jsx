@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Post from "./Post";
 import classes from "./PostsList.module.css";
 import NewPost from "./NewPost";
@@ -7,9 +8,10 @@ import Modal from "./Modal";
 function PostList({ isVisible, onStopPosting }) {
   const [changeText, setChangeText] = useState("");
   const [changeAuthor, setChangeAuthor] = useState("");
+
   
-   const [show,setShow] = useState(false);
-  
+
+  const [cnts, setCnts] = useState([]);
 
   function onTextHandler(event) {
     setChangeText(event.target.value);
@@ -17,11 +19,10 @@ function PostList({ isVisible, onStopPosting }) {
   function onAuthorHandler(event) {
     setChangeAuthor(event.target.value);
   }
-  
-  function onSetPostHandler(event){
+  function onSetPostHandler(event) {
     event.preventDefault();
-    setShow(true);
-    
+   
+    setCnts((prev) => [0, ...prev]);
     onStopPosting();
   }
 
@@ -32,20 +33,17 @@ function PostList({ isVisible, onStopPosting }) {
           <NewPost
             onInputText={onTextHandler}
             onInputAuthor={onAuthorHandler}
-            onInputCancel=
-            {onStopPosting}
+            onInputCancel={onStopPosting}
             onInputSumit={onSetPostHandler}
           />
         </Modal>
       ) : null}
 
       <ul className={classes.posts}>
-         {
-          show &&
-         <Post author={changeAuthor} text={changeText}/>
-          
-         }
-          
+        {
+          cnts.map( cnt => 
+           ( <Post author={changeAuthor} text={changeText} />)
+          )}
       </ul>
     </>
   );
