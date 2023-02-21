@@ -6,7 +6,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 function PostList({ isVisible, onStopPosting }) {
-  
+
   const [posts, setPosts] = useState([]);
   function onPostHandler(posts) {
     setPosts((prev) => [posts, ...prev]);
@@ -22,8 +22,8 @@ function PostList({ isVisible, onStopPosting }) {
       ) : null}
 
       <ul className={classes.posts}>
-        {posts.map((cnt) => (
-          <Post author={cnt[0]} text={cnt[1]} />
+        {posts.map((post) => (
+          <Post author={post.author} text={post.text} />
         ))}
       </ul>
     </>

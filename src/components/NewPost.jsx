@@ -14,11 +14,11 @@ function NewPost({onInputCancel,onInputSubmit}) {
   }
   function onSubmitHandler(event) {
     event.preventDefault();
-    const manyPosts = {
+    const posts = {
       text : changeText,
       author : changeAuthor
     }
-    onInputSubmit([manyPosts.author,manyPosts.text]);
+    onInputSubmit(posts);
     onInputCancel();
   }
 
