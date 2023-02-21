@@ -8,7 +8,8 @@ function PostList({ isVisible, onStopPosting }) {
   const [changeText, setChangeText] = useState("");
   const [changeAuthor, setChangeAuthor] = useState("");
   
-   
+   const [show,setShow] = useState(false);
+  
 
   function onTextHandler(event) {
     setChangeText(event.target.value);
@@ -19,8 +20,8 @@ function PostList({ isVisible, onStopPosting }) {
   
   function onSetPostHandler(event){
     event.preventDefault();
+    setShow(true);
     
-  
     onStopPosting();
   }
 
@@ -39,14 +40,12 @@ function PostList({ isVisible, onStopPosting }) {
       ) : null}
 
       <ul className={classes.posts}>
-         
+         {
+          show &&
          <Post author={changeAuthor} text={changeText}/>
           
-         
-         
+         }
           
-       
-        
       </ul>
     </>
   );
