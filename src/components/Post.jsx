@@ -5,7 +5,7 @@ function Post({ author, text}) {
     <li className={classes.post}>
       <p className={classes.author}>{author}</p>
 
-      <div style={{ color: "red" }}>text:</div>
+      
 
       <p className={classes.text}>{text}</p>
     </li>

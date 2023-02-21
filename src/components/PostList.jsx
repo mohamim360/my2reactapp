@@ -4,11 +4,12 @@ import NewPost from "./NewPost";
 import { useState } from "react";
 import Modal from "./Modal";
 
-function PostList({isVisible,onStopPosting}) {
-
+function PostList({ isVisible, onStopPosting }) {
   const [changeText, setChangeText] = useState("");
   const [changeAuthor, setChangeAuthor] = useState("");
- 
+  
+   
+
   function onTextHandler(event) {
     setChangeText(event.target.value);
   }
@@ -16,25 +17,36 @@ function PostList({isVisible,onStopPosting}) {
     setChangeAuthor(event.target.value);
   }
   
+  function onSetPostHandler(event){
+    event.preventDefault();
+    
+  
+    onStopPosting();
+  }
 
   return (
     <>
-    
-    {
-      isVisible ? 
-      <Modal onClose={onStopPosting}>
-     <NewPost 
-      onInputText={onTextHandler} 
-      onInputAuthor={onAuthorHandler} 
-     
-      />
-     </Modal> : null
-    }
-     
-     
+      {isVisible ? (
+        <Modal onClose={onStopPosting}>
+          <NewPost
+            onInputText={onTextHandler}
+            onInputAuthor={onAuthorHandler}
+            onInputCancel=
+            {onStopPosting}
+            onInputSumit={onSetPostHandler}
+          />
+        </Modal>
+      ) : null}
+
       <ul className={classes.posts}>
-        <Post author={changeAuthor} text={changeText} />
-        <Post author="Hasan" text="hello hamim" />
+         
+         <Post author={changeAuthor} text={changeText}/>
+          
+         
+         
+          
+       
+        
       </ul>
     </>
   );

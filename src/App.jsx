@@ -5,11 +5,13 @@ import { useState } from "react";
 function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  function hideModalHandler(event) {
+  function hideModalHandler() {
     setModalIsVisible(false);
+    
   }
-  function showModalHandler(event) {
+  function showModalHandler() {
     setModalIsVisible(true);
+    
   }
   
   return (
