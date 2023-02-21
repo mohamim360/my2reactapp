@@ -4,29 +4,25 @@ import NewPost from "./NewPost";
 import { useState } from "react";
 import Modal from "./Modal";
 
-function PostList() {
+function PostList({isVisible,onStopPosting}) {
 
   const [changeText, setChangeText] = useState("");
   const [changeAuthor, setChangeAuthor] = useState("");
-  const [modalIsVisible, setModalIsVisible] = useState(true);
  
-
   function onTextHandler(event) {
     setChangeText(event.target.value);
   }
   function onAuthorHandler(event) {
     setChangeAuthor(event.target.value);
   }
-  function hideModalHandler(event) {
-    setModalIsVisible(event.target.value);
-  }
   
 
   return (
     <>
+    
     {
-      modalIsVisible ? 
-      <Modal onClose={hideModalHandler}>
+      isVisible ? 
+      <Modal onClose={onStopPosting}>
      <NewPost 
       onInputText={onTextHandler} 
       onInputAuthor={onAuthorHandler} 
