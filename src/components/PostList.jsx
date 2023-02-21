@@ -22,7 +22,7 @@ function PostList({ isVisible, onStopPosting }) {
   function onSetPostHandler(event) {
     event.preventDefault();
    
-    setCnts((prev) => [0, ...prev]);
+    setCnts((prev) => [[changeAuthor,changeText], ...prev]);
     onStopPosting();
   }
 
@@ -42,7 +42,7 @@ function PostList({ isVisible, onStopPosting }) {
       <ul className={classes.posts}>
         {
           cnts.map( cnt => 
-           ( <Post author={changeAuthor} text={changeText} />)
+           ( <Post author={cnt[0]} text={cnt[1]} />)
           )}
       </ul>
     </>
