@@ -8,6 +8,7 @@ function PostList() {
 
   const [changeText, setChangeText] = useState("");
   const [changeAuthor, setChangeAuthor] = useState("");
+ 
 
   function onTextHandler(event) {
     setChangeText(event.target.value);
@@ -15,6 +16,7 @@ function PostList() {
   function onAuthorHandler(event) {
     setChangeAuthor(event.target.value);
   }
+  
 
   return (
     <>
@@ -22,6 +24,7 @@ function PostList() {
      <NewPost 
       onInputText={onTextHandler} 
       onInputAuthor={onAuthorHandler} 
+     
       />
      </Modal>
      
