@@ -8,6 +8,7 @@ function PostList() {
 
   const [changeText, setChangeText] = useState("");
   const [changeAuthor, setChangeAuthor] = useState("");
+  const [modalIsVisible, setModalIsVisible] = useState(true);
  
 
   function onTextHandler(event) {
@@ -16,17 +17,24 @@ function PostList() {
   function onAuthorHandler(event) {
     setChangeAuthor(event.target.value);
   }
+  function hideModalHandler(event) {
+    setModalIsVisible(event.target.value);
+  }
   
 
   return (
     <>
-     <Modal>
+    {
+      modalIsVisible ? 
+      <Modal onClose={hideModalHandler}>
      <NewPost 
       onInputText={onTextHandler} 
       onInputAuthor={onAuthorHandler} 
      
       />
-     </Modal>
+     </Modal> : null
+    }
+     
      
       <ul className={classes.posts}>
         <Post author={changeAuthor} text={changeText} />
