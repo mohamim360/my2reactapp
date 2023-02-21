@@ -5,7 +5,7 @@ function NewPost(props) {
     <form className={classes.form}>
       <p>
         <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={props.onInputText} />
+        <textarea id="body" required rows={5} onChange={props.onInputText} />
       </p>
       <p>
         <label htmlFor="name">Your Name</label>
